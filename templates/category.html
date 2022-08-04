@@ -1,0 +1,40 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Category
+{% endblock title %}
+
+{% block content %}
+    <h1>Категории</h1>
+<hr>
+    {% if category %}
+        <table>
+            <tr>
+                 <td>
+                    ID
+                </td>
+                <td>
+                    Кетегория
+                </td>
+            </tr>
+        {%  for category in category %}
+            <tr>
+                 <td>
+                    {{category.id}} <!-- попробуем умножить название товара на строку а -->
+                </td>
+                <td>
+                    {{category.category}} <!-- попробуем умножить название товара на строку а -->
+                </td>
+                <td>
+                    {% for user in category.subscribers.all %}
+                    {{ user.username}},
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h2>Категорий нет!</h2>
+    {% endif %}
+<!-- Проверяем что поддерживается постраничный вывод -->
+{% endblock content %}
